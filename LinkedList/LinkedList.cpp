@@ -24,7 +24,6 @@ LinkedList::LinkedList(int value)
     head = newNode;
     tail = newNode;
     length = 1;
-    newNode->next = nullptr;
 }
 
 LinkedList::~LinkedList()
@@ -47,4 +46,81 @@ void LinkedList::printList()
         temp = temp->next;
     }
     std::cout << std::endl;
+}
+
+void LinkedList::reverse()
+{
+    if (length <= 1)
+        return;
+    Node *temp = head;
+    head = tail;
+    tail = temp;
+    Node *pre = nullptr;
+    Node *after = temp->next;
+    while (temp)
+    {
+        after = temp->next;
+        temp->next = pre;
+        pre = temp;
+        temp = after;
+    }
+}
+
+void LinkedList::append(int value)
+{
+    Node *newNode = new Node(value);
+    if (tail)
+    {
+        tail->next = newNode;
+        tail = newNode;
+    }
+    else
+    {
+        head = newNode;
+        tail = newNode;
+    }
+    length++;
+}
+
+void LinkedList::prepend(int value)
+{
+    Node *newNode = new Node(value);
+    if (head)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+    else
+    {
+        head = newNode;
+        tail = newNode;
+    }
+    length++;
+}
+
+void LinkedList::insertAtIndex(int index, int value)
+{
+    if (index < 0 || index > length)
+    {
+        std::cout << "index out of scope" << std::endl;
+        return;
+    }
+    if (index == 0)
+    {
+        return prepend(value);
+    }
+    if (index == length)
+    {
+        return append(value);
+    }
+    Node *newNode = new Node(value);
+    int i = 0;
+    Node *temp = head;
+    while (i != index - 1)
+    {
+        temp = temp->next;
+        i++;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
 }

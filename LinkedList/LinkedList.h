@@ -13,7 +13,7 @@ public:
     LinkedList(int value);
     ~LinkedList();
     void printList();
-    void Reverse();
+    void reverse();
     void append(int value);
     void prepend(int value);
     void insertAtIndex(int index, int value);
