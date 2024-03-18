@@ -10,6 +10,7 @@ public:
     Node *tail;
     int length;
 
+    LinkedList();
     LinkedList(int value);
     ~LinkedList();
     void printList();
@@ -17,8 +18,8 @@ public:
     void append(int value);
     void prepend(int value);
     void insertAtIndex(int index, int value);
-    void deleteLast(int value);
-    void deleteFirst(int value);
+    void deleteLast();
+    void deleteFirst();
     bool deleteByIndex(int index);
     bool deleteByValue(int value);
     bool deleteNthNodeFromEnd(int index);
