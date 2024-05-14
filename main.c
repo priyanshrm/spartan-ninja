@@ -1,32 +1,21 @@
-#include "header_files/DoublyLinkedList.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include "header_files/Stack.h"
 
 int main(int argc, char const *argv[])
 {
-    // printf("%d", getFavNumber());
-    struct Node *head = NULL;
-    int x[5] = {1, 3, 5, 7, 9};
-    int *ptr = x;
-    for (int i = 0; i < sizeof(x) / sizeof(x[0]); i++)
+    int size = 5;
+    int stack_arr[size];
+    initialize_stack(size);
+    for (int i = 0; i < size; i++)
     {
-        insert(&head, *ptr);
-        ptr++;
+        push((i + 1) * 5, stack_arr);
     }
-    printDLL(&head);
-
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
-    delete (&head, 0);
-    printDLL(&head);
+    push(11, stack_arr);
+    for (int i = 0; i < size; i++)
+    {
+        pop(stack_arr);
+    }
+    pop(stack_arr);
     return 0;
 }
