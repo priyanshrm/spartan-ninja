@@ -11,16 +11,21 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < size; i++)
     {
         enqueue((i + 1) * 5, queue_arr);
-        if (i == 3)
+        if (i == 3 || i == 4)
             dequeue(queue_arr);
     }
     enqueue(18, queue_arr);
     enqueue(19, queue_arr);
+    enqueue(20, queue_arr);
     for (int i = 0; i < size; i++)
     {
         dequeue(queue_arr);
     }
     dequeue(queue_arr);
+    enqueue(71, queue_arr);
+    dequeue(queue_arr);
+    dequeue(queue_arr);
+
     free(queue_arr);
     return 0;
 }
