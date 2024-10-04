@@ -28,4 +28,5 @@ int main(int argc, char const *argv[])
 
     free(queue_arr);
     return 0;
+    printf("hellow");
 }
