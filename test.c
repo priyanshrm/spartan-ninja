@@ -7,17 +7,25 @@
 int main()
 {
     char line[BUFFER_LENGTH];
-    while (fgets(line, BUFFER_LENGTH, stdin) && line[0] != '\n')
+    FILE *hand;
+    hand = fopen("romeo.txt", "r");
+    while (fgets(line, BUFFER_LENGTH, hand) != NULL)
     {
-        int len = 0;
-        bool toPrint = false;
-        for (; line[len] != '\0'; len++)
+        int lastNonBlank = -1;
+        for (int i = 0; line[i] != '\n'; i++)
         {
-            if (len > 10)
-                toPrint = true;
+            if ((line[i] != ' ') && (line[i] != '\t'))
+                lastNonBlank = i;
         }
-        toPrint &&printf("%s", line);
+
+        if (lastNonBlank > -1)
+        {
+            line[lastNonBlank + 1] = '\0';
+            printf("%s.\n", line);
+            // printf("%d", lastNonBlank);
+        }
     }
+    fclose(hand);
 
     return 0;
 }
