@@ -1,8 +1,14 @@
 #include <stdio.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <limits.h>
+
 #define BUFFER_LENGTH 100
+
+int getStrLength(char arr[])
+{
+    int i = 0;
+    while (arr[i] != '\0' && arr[i] != '\n')
+        i++;
+    return i;
+}
 
 int main()
 {
@@ -11,20 +17,16 @@ int main()
     hand = fopen("romeo.txt", "r");
     while (fgets(line, BUFFER_LENGTH, hand) != NULL)
     {
-        int lastNonBlank = -1;
-        for (int i = 0; line[i] != '\n'; i++)
+        int len = getStrLength(line);
+        for (int i = 0; i <= len / 2; i++)
         {
-            if ((line[i] != ' ') && (line[i] != '\t'))
-                lastNonBlank = i;
+            char temp = line[i];
+            line[i] = line[len - i];
+            line[len - i] = temp;
         }
-
-        if (lastNonBlank > -1)
-        {
-            line[lastNonBlank + 1] = '\0';
-            printf("%s.\n", line);
-            // printf("%d", lastNonBlank);
-        }
+        printf("%s", line);
     }
+
     fclose(hand);
 
     return 0;

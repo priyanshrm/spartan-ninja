@@ -1,6 +1,3 @@
-O Romeo, Romeo! wherefore art thou Romeo?      
-hello baby how are you     
-this has extra tabs and spaces        
-			    
-empty line with tabs			     
-                       
+Hello, World!
+This is a test.
+12345
