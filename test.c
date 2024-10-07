@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <math.h>
+#include <ctype.h>
 #define BUFFER_LENGTH 100
 
 int getStrLength(char arr[])
@@ -10,24 +11,49 @@ int getStrLength(char arr[])
     return i;
 }
 
-int main()
+int htoi(char hexInput[])
 {
-    char line[BUFFER_LENGTH];
-    FILE *hand;
-    hand = fopen("romeo.txt", "r");
-    while (fgets(line, BUFFER_LENGTH, hand) != NULL)
+    int base10result = 0;
+    int strLength = getStrLength(hexInput);
+    strLength--;
+
+    for (int i = 0; i <= strLength; i++)
     {
-        int len = getStrLength(line);
-        for (int i = 0; i <= len / 2; i++)
+        switch (tolower(hexInput[i]))
         {
-            char temp = line[i];
-            line[i] = line[len - i];
-            line[len - i] = temp;
+        case 'a':
+            base10result += 10 * pow(16, (strLength - i));
+            break;
+        case 'b':
+            base10result += 11 * pow(16, (strLength - i));
+            break;
+        case 'c':
+            base10result += 12 * pow(16, (strLength - i));
+            break;
+        case 'd':
+            base10result += 13 * pow(16, (strLength - i));
+            break;
+        case 'e':
+            base10result += 14 * pow(16, (strLength - i));
+            break;
+        case 'f':
+            base10result += 15 * pow(16, (strLength - i));
+            break;
+        default:
+            base10result += (hexInput[i] - '0') * pow(16, (strLength - i));
+            break;
         }
-        printf("%s", line);
     }
 
-    fclose(hand);
+    return base10result;
+}
 
+int main()
+{
+
+    char hexInput[BUFFER_LENGTH];
+    printf("Enter a hexadecimal number: ");
+    fgets(hexInput, BUFFER_LENGTH, stdin);
+    printf("%d", htoi(hexInput));
     return 0;
 }
