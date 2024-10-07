@@ -11,49 +11,40 @@ int getStrLength(char arr[])
     return i;
 }
 
-int htoi(char hexInput[])
+int findIndex(char arr[], char target)
 {
-    int base10result = 0;
-    int strLength = getStrLength(hexInput);
-    strLength--;
-
-    for (int i = 0; i <= strLength; i++)
+    int length = getStrLength(arr);
+    for (int i = 0; i < length; i++)
     {
-        switch (tolower(hexInput[i]))
-        {
-        case 'a':
-            base10result += 10 * pow(16, (strLength - i));
-            break;
-        case 'b':
-            base10result += 11 * pow(16, (strLength - i));
-            break;
-        case 'c':
-            base10result += 12 * pow(16, (strLength - i));
-            break;
-        case 'd':
-            base10result += 13 * pow(16, (strLength - i));
-            break;
-        case 'e':
-            base10result += 14 * pow(16, (strLength - i));
-            break;
-        case 'f':
-            base10result += 15 * pow(16, (strLength - i));
-            break;
-        default:
-            base10result += (hexInput[i] - '0') * pow(16, (strLength - i));
-            break;
-        }
+        if (arr[i] == target)
+            return i;
     }
+    return -1;
+}
 
-    return base10result;
+void deleteChars(char str1[], char str2[])
+{
+    char result[BUFFER_LENGTH];
+    int c = 0;
+    int str1len = getStrLength(str1);
+    for (int i = 0; i < str1len; i++)
+    {
+        if (findIndex(str2, str1[i]) != -1)
+            continue;
+        result[c] = str1[i];
+        c++;
+    }
+    printf("%s", result);
 }
 
 int main()
 {
-
-    char hexInput[BUFFER_LENGTH];
-    printf("Enter a hexadecimal number: ");
-    fgets(hexInput, BUFFER_LENGTH, stdin);
-    printf("%d", htoi(hexInput));
+    char str1[BUFFER_LENGTH];
+    char str2[BUFFER_LENGTH];
+    printf("Enter a string 1: ");
+    fgets(str1, BUFFER_LENGTH, stdin);
+    printf("Enter a string 2: ");
+    fgets(str2, BUFFER_LENGTH, stdin);
+    deleteChars(str1, str2);
     return 0;
 }
