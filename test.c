@@ -1,17 +1,28 @@
 #include <stdio.h>
-#include <math.h>
-#include <ctype.h>
+#include <string.h>
 #define BUFFER_LENGTH 100
+
+int rIndex(char s[], char t)
+{
+    int slength = strlen(s) - 1;
+    for (int i = slength; i >= 0; i--)
+    {
+        if (s[i] == t)
+            return (slength - i);
+    }
+    return -1;
+}
 
 int main()
 {
-    int num, b;
-    printf("Enter number: ");
-    scanf("%d", &num);
-    printf("Enter no. of right shift: ");
-    scanf("%d", &b);
-    num = num >> b;
-    printf("after shift: %d", num);
+    char input[BUFFER_LENGTH];
+    char target;
+
+    printf("Enter string: ");
+    fgets(input, BUFFER_LENGTH, stdin);
+    printf("Enter target: ");
+    scanf("%c", &target);
+    printf("%d\n", rIndex(input, target));
 
     return 0;
 }
